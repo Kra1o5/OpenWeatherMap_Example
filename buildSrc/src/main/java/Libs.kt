@@ -3,7 +3,16 @@ object Libs {
         "androidx.core:core-ktx:${Versions.core}",
         "androidx.appcompat:appcompat:${Versions.appCompat}",
         "com.google.android.material:material:${Versions.material}",
-        "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
+        "androidx.constraintlayout:constraintlayout:${Versions.constraint}",
+        "com.google.dagger:hilt-android:${Versions.hilt}"
+    )
+
+    val androidKaptLibs = listOf(
+        "com.google.dagger:hilt-compiler:${Versions.hilt}"
+    )
+
+    val kotlinLibs = listOf(
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
     )
 
     val testLibs = listOf(
