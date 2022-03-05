@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Open Weather Map"
-include ':app'
-include ':data'
-include ':domain'
-include ':usecases'
+include (":app")
+include (":data")
+include (":domain")
+include (":usecases")
