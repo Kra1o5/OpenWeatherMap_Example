@@ -4,7 +4,9 @@ object Libs {
         "androidx.appcompat:appcompat:${Versions.appCompat}",
         "com.google.android.material:material:${Versions.material}",
         "androidx.constraintlayout:constraintlayout:${Versions.constraint}",
-        "com.google.dagger:hilt-android:${Versions.hilt}"
+        "com.google.dagger:hilt-android:${Versions.hilt}",
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifeCycle}",
+        "androidx.activity:activity-ktx:${Versions.activity}",
     )
 
     val androidKaptLibs = listOf(

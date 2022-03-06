@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Open Weather Map</string>
+    <string name="temperature_text">Temperatura:</string>
+    <string name="hour_text">Hora:</string>
+    <string name="temperature_value">%1$dº</string>
+    <string name="error_text">"Se ha producido un error, por favor intentelo de nuevo más parte"</string>
 </resources>
