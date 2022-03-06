@@ -5,7 +5,7 @@ import com.randomdroids.data.source.RemoteDataSource
 import com.randomdroids.domain.Weather
 
 class OpenWeatherMapRepository(private val remoteDataSource: RemoteDataSource) {
-    suspend fun getWeather(latitude: String, longitude: String): Response<List<Weather>> {
+    suspend fun getWeather(latitude: Double?, longitude: Double?): Response<List<Weather>> {
         return try {
             remoteDataSource.getWeather(latitude, longitude)
         } catch (exception: Exception) {

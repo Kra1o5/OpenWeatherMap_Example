@@ -20,7 +20,7 @@ import kotlin.math.roundToInt
 
 class OpenWeatherServerService @Inject constructor(private val baseurl: String) {
 
-    suspend fun getWeather(latitude: String, longitude: String): Response<List<Weather>> {
+    suspend fun getWeather(latitude: Double?, longitude: Double?): Response<List<Weather>> {
         return suspendCancellableCoroutine { continuation ->
             try {
                 val reader: BufferedReader

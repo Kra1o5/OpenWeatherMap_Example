@@ -7,6 +7,8 @@ object Libs {
         "com.google.dagger:hilt-android:${Versions.hilt}",
         "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifeCycle}",
         "androidx.activity:activity-ktx:${Versions.activity}",
+        "com.google.android.gms:play-services-maps:${Versions.maps}",
+        "com.google.android.gms:play-services-location:${Versions.location}"
     )
 
     val androidKaptLibs = listOf(

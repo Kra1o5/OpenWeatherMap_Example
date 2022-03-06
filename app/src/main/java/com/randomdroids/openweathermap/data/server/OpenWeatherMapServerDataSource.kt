@@ -9,7 +9,7 @@ class OpenWeatherMapServerDataSource @Inject constructor(
     private val openWeatherServerService: OpenWeatherServerService
 ) : RemoteDataSource {
 
-    override suspend fun getWeather(latitude: String, longitude: String): Response<List<Weather>> {
+    override suspend fun getWeather(latitude: Double?, longitude: Double?): Response<List<Weather>> {
         return try {
             openWeatherServerService.getWeather(latitude, longitude)
         } catch (exception: Exception) {

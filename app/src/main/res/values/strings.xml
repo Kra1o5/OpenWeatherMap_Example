@@ -4,4 +4,5 @@
     <string name="hour_text">Hora:</string>
     <string name="temperature_value">%1$dº</string>
     <string name="error_text">"Se ha producido un error, por favor intentelo de nuevo más parte"</string>
+    <string name="permission_text">La aplicación necesita el permiso de ubicación para funcionar</string>
 </resources>

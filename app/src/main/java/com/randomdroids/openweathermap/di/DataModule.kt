@@ -1,6 +1,9 @@
 package com.randomdroids.openweathermap.di
 
+import androidx.core.content.PermissionChecker
+import com.randomdroids.data.repository.LocationRepository
 import com.randomdroids.data.repository.OpenWeatherMapRepository
+import com.randomdroids.data.source.LocationDataSource
 import com.randomdroids.data.source.RemoteDataSource
 import dagger.Module
 import dagger.Provides
@@ -14,4 +17,9 @@ class DataModule {
     fun openWeatherMapRepositoryProvider(
         remoteDataSource: RemoteDataSource
     ) = OpenWeatherMapRepository(remoteDataSource)
+
+    @Provides
+    fun locationRepositoryProvider(
+        locationDataSource: LocationDataSource
+    ) = LocationRepository(locationDataSource)
 }

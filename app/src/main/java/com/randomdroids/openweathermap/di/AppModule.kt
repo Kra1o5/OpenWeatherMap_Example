@@ -1,6 +1,9 @@
 package com.randomdroids.openweathermap.di
 
+import android.app.Application
+import com.randomdroids.data.source.LocationDataSource
 import com.randomdroids.data.source.RemoteDataSource
+import com.randomdroids.openweathermap.data.local.LocationLocalDataSource
 import com.randomdroids.openweathermap.data.server.API_KEY
 import com.randomdroids.openweathermap.data.server.OpenWeatherMapServerDataSource
 import com.randomdroids.openweathermap.data.server.OpenWeatherServerService
@@ -25,4 +28,8 @@ class AppModule {
     @Provides
     fun openWeatherMapDataSourceProvider(openWeatherServerService: OpenWeatherServerService): RemoteDataSource =
         OpenWeatherMapServerDataSource(openWeatherServerService)
+
+    @Provides
+    fun locationDataSourceProvider(app: Application): LocationDataSource =
+        LocationLocalDataSource(app)
 }

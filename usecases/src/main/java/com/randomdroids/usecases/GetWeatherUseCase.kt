@@ -6,8 +6,8 @@ import com.randomdroids.domain.Weather
 
 class GetWeatherUseCase(private val openWeatherMapRepository: OpenWeatherMapRepository) {
     suspend fun invoke(
-        latitude: String,
-        longitude: String
+        latitude: Double?,
+        longitude: Double?
     ): Response<List<Weather>> =
         openWeatherMapRepository.getWeather(latitude, longitude)
 }

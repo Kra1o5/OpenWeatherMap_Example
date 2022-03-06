@@ -4,8 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.randomdroids.data.common.Response
 import com.randomdroids.data.common.Status
+import com.randomdroids.domain.Location
 import com.randomdroids.domain.Weather
 import com.randomdroids.openweathermap.di.IoDispatcher
+import com.randomdroids.usecases.GetLocationUseCase
 import com.randomdroids.usecases.GetWeatherUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -17,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     @IoDispatcher private val requestDispatcher: CoroutineDispatcher,
+    private val getLocationUseCase: GetLocationUseCase,
     private val getWeatherUseCase: GetWeatherUseCase
 ) : ViewModel() {
 
@@ -29,7 +32,46 @@ class MainViewModel @Inject constructor(
     private val _error = MutableStateFlow(false)
     val error: StateFlow<Boolean> get() = _error
 
-    fun requestListWeather(latitude: String, longitude: String) {
+    private val _location: MutableStateFlow<Location?> = MutableStateFlow(null)
+    val location: StateFlow<Location?> get() = _location
+
+    fun requestLocation() {
+        viewModelScope.launch {
+            viewModelScope.launch(requestDispatcher) {
+                _loading.value = true
+                val result = getLocationUseCase.invoke()
+                when (result.status) {
+                    Status.LOADING -> _location.emit(null)
+                    Status.SUCCESS -> onSuccessGetLocationData(result.data)
+                    Status.ERROR -> onErrorGetLocationData()
+                }
+                _loading.value = false
+            }
+        }
+    }
+
+    /**
+     * Function to handle when request succeeds
+     *
+     * @param location List of weather data
+     */
+    private fun onSuccessGetLocationData(location: Location?) {
+        viewModelScope.launch(requestDispatcher) {
+            _location.emit(location)
+        }
+    }
+
+    /**
+     * Function to handle when request fails
+     *
+     */
+    private fun onErrorGetLocationData() {
+        viewModelScope.launch(requestDispatcher) {
+            _error.emit(true)
+        }
+    }
+
+    fun requestListWeather(latitude: Double?, longitude: Double?) {
         viewModelScope.launch(requestDispatcher) {
             _loading.value = true
             val result = getWeatherUseCase.invoke(latitude, longitude)
