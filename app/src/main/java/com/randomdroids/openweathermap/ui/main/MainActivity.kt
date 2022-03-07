@@ -19,10 +19,12 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.randomdroids.openweathermap.R
 import com.randomdroids.openweathermap.common.alertDialog
+import com.randomdroids.openweathermap.databinding.ActivityMainBinding
 import com.randomdroids.openweathermap.databinding.ActivityMainBinding.inflate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), OnMapClickListener,
@@ -30,8 +32,9 @@ class MainActivity : AppCompatActivity(), OnMapClickListener,
     /** View model */
     private val viewModel: MainViewModel by viewModels()
 
+    private lateinit var binding: ActivityMainBinding
+
     private lateinit var mMap: GoogleMap
-    private val defaultLocation = LatLng(-33.8523341, 151.2106085)
 
     companion object {
         private const val DEFAULT_ZOOM = 15f
@@ -42,21 +45,23 @@ class MainActivity : AppCompatActivity(), OnMapClickListener,
             ActivityResultContracts.RequestMultiplePermissions()
         )
         { permissions ->
+            var isGranted = false
+
             permissions.entries.forEach {
-                val isGranted = it.value
-                if (isGranted) {
-                    viewModel.requestLocation()
-                } else {
-                    showAlertDialog()
-                }
+                isGranted = it.value
+            }
+
+            if (isGranted) {
+                viewModel.requestLocation()
+            } else {
+                showAlertDialog()
             }
         }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = inflate(layoutInflater)
+        binding = inflate(layoutInflater)
         setContentView(binding.root)
 
         permissionChecker()
