@@ -2,6 +2,7 @@
  * Define App Libs Versions
  */
 object Versions {
+    const val compose = "1.1.1"
     const val core = "1.7.0"
     const val appCompat = "1.4.1"
     const val material = "1.5.0"

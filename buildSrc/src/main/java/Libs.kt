@@ -4,6 +4,14 @@
 object Libs {
     val androidLibs = listOf(
         "androidx.core:core-ktx:${Versions.core}",
+        "androidx.compose.ui:ui:${Versions.compose}",
+        "androidx.compose.material:material:${Versions.compose}",
+        "androidx.compose.ui:ui-tooling-preview:${Versions.compose}",
+        "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifeCycle}",
+        "androidx.activity:activity-compose:${Versions.activity}",
+        "com.google.maps.android:maps-compose:1.2.0",
+        "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1",
+        "androidx.constraintlayout:constraintlayout-compose:1.0.0",
         "androidx.appcompat:appcompat:${Versions.appCompat}",
         "com.google.android.material:material:${Versions.material}",
         "androidx.constraintlayout:constraintlayout:${Versions.constraint}",
@@ -28,6 +36,12 @@ object Libs {
 
     val androidTestLibs = listOf(
         "androidx.test.espresso:espresso-core:${Versions.espresso}",
+        "androidx.test.ext:junit:${Versions.junitKtx}",
+        "androidx.compose.ui:ui-test-junit4:${Versions.compose}",
         "androidx.test.ext:junit-ktx:${Versions.junitKtx}",
+    )
+
+    val androidDebugLibs = listOf(
+        "androidx.compose.ui:ui-tooling:${Versions.compose}"
     )
 }
