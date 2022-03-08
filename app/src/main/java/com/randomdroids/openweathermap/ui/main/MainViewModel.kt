@@ -32,7 +32,7 @@ class MainViewModel @Inject constructor(
     private val _error = MutableStateFlow(false)
     val error: StateFlow<Boolean> get() = _error
 
-    private val _location: MutableStateFlow<Location?> = MutableStateFlow(null)
+    private val _location = MutableStateFlow<Location?>(null)
     val location: StateFlow<Location?> get() = _location
 
     fun requestLocation() {
