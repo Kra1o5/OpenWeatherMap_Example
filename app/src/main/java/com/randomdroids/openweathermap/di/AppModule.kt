@@ -16,6 +16,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
+/**
+ * App module.
+ *
+ * Define all app common dependencies
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {

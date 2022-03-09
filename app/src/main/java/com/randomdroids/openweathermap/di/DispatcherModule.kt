@@ -7,6 +7,11 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
+/**
+ * Dispatcher module.
+ *
+ * Define the most commonly dispatchers used
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class DispatcherModule {

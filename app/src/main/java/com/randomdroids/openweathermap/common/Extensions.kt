@@ -4,6 +4,14 @@ import android.content.Context
 import android.content.DialogInterface
 import androidx.appcompat.app.AlertDialog
 
+/**
+ * Alert dialog.
+ *
+ * @param context Context
+ * @param message Message to show
+ * @param okListener Ok listener
+ * @param cancelListener Cancel listener
+ */
 fun alertDialog(
     context: Context,
     message: String,

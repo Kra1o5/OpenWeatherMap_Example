@@ -9,6 +9,11 @@ import com.randomdroids.openweathermap.R
 import com.randomdroids.openweathermap.databinding.TableLayoutBinding
 import kotlin.properties.Delegates
 
+/**
+ * Main adapter.
+ *
+ * @param weatherDataList list with weather information
+ */
 class MainAdapter(weatherDataList: List<Weather> = emptyList()) :
     RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
@@ -19,6 +24,13 @@ class MainAdapter(weatherDataList: List<Weather> = emptyList()) :
         notifyDataSetChanged()
     }
 
+    /**
+     * On create view holder.
+     *
+     * @param viewGroup View group
+     * @param viewType View type
+     * @return view holder
+     */
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.table_layout, viewGroup, false)
@@ -26,13 +38,29 @@ class MainAdapter(weatherDataList: List<Weather> = emptyList()) :
         return ViewHolder(view)
     }
 
+    /**
+     * Get item count.
+     *
+     * @return items count of the weather list
+     */
     override fun getItemCount(): Int = getWeatherDataList.size
 
+    /**
+     * On bind view holder.
+     *
+     * @param holder Holder
+     * @param position Position
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val weatherData = weatherDataList[position]
         holder.bind(weatherData)
     }
 
+    /**
+     * View holder.
+     *
+     * @param view
+     */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = TableLayoutBinding.bind(view)
         fun bind(weather: Weather) = with(binding) {

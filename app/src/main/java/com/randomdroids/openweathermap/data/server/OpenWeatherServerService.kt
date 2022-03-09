@@ -18,8 +18,20 @@ import javax.inject.Inject
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
+/**
+ * Open weather server service.
+ *
+ * @property baseurl OpenWeather common url
+ */
 class OpenWeatherServerService @Inject constructor(private val baseurl: String) {
 
+    /**
+     * Get weather.
+     *
+     * @param latitude Latitude
+     * @param longitude Longitude
+     * @return Processed weather information list from server response
+     */
     suspend fun getWeather(latitude: Double?, longitude: Double?): Response<List<Weather>> {
         return suspendCancellableCoroutine { continuation ->
             try {
@@ -54,6 +66,12 @@ class OpenWeatherServerService @Inject constructor(private val baseurl: String) 
         }
     }
 
+    /**
+     * Parse json.
+     *
+     * @param jsonString Json format
+     * @return Only necessary fields in the weather object list
+     */
     private fun parseJson(jsonString: String): Response<List<Weather>> {
         val weatherList: MutableList<Weather> = ArrayList()
         return try {

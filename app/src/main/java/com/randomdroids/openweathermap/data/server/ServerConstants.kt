@@ -1,5 +1,8 @@
 package com.randomdroids.openweathermap.data.server
 
+/**
+ * Define Server Constants values
+ */
 object ServerConstants {
     private const val EXCLUDE_VALUES = "current,minutely,daily,alerts"
     private const val UNITS_VALUE = "metric"

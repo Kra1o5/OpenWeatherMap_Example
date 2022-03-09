@@ -1,6 +1,5 @@
 package com.randomdroids.openweathermap.di
 
-import androidx.core.content.PermissionChecker
 import com.randomdroids.data.repository.LocationRepository
 import com.randomdroids.data.repository.OpenWeatherMapRepository
 import com.randomdroids.data.source.LocationDataSource
@@ -10,6 +9,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
+/**
+ * Data module.
+ *
+ * Define all repositories with his sources
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class DataModule {

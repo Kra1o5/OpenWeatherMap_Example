@@ -11,6 +11,11 @@ import com.randomdroids.domain.Location
 import kotlinx.coroutines.suspendCancellableCoroutine
 import javax.inject.Inject
 
+/**
+ * Location local data source.
+ *
+ * @param application context
+ */
 class LocationLocalDataSource @Inject constructor(
     application: Application
 ) : LocationDataSource {
@@ -18,6 +23,11 @@ class LocationLocalDataSource @Inject constructor(
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(application)
     private var cancellationTokenSource = CancellationTokenSource()
 
+    /**
+     * Get location.
+     *
+     * @return user location coordinates
+     */
     @SuppressLint("MissingPermission")
     override suspend fun getLocation(): Response<Location> =
         suspendCancellableCoroutine { continuation ->

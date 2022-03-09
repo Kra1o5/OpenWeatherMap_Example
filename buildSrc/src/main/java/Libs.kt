@@ -1,3 +1,6 @@
+/**
+ * Define App Libs
+ */
 object Libs {
     val androidLibs = listOf(
         "androidx.core:core-ktx:${Versions.core}",

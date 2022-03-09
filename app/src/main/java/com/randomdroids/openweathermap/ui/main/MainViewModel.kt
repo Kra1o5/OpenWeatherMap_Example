@@ -16,6 +16,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * Main view model.
+ *
+ * @property requestDispatcher IO coroutine
+ * @property getLocationUseCase Obtain location data
+ * @property getWeatherUseCase Obtain weather information
+ */
 @HiltViewModel
 class MainViewModel @Inject constructor(
     @IoDispatcher private val requestDispatcher: CoroutineDispatcher,
@@ -35,6 +42,9 @@ class MainViewModel @Inject constructor(
     private val _location = MutableStateFlow<Location?>(null)
     val location: StateFlow<Location?> get() = _location
 
+    /**
+     * Request location data.
+     */
     fun requestLocation() {
         viewModelScope.launch {
             viewModelScope.launch(requestDispatcher) {
@@ -51,9 +61,9 @@ class MainViewModel @Inject constructor(
     }
 
     /**
-     * Function to handle when request succeeds
+     * On success get location data.
      *
-     * @param location List of weather data
+     * @param location Location
      */
     private fun onSuccessGetLocationData(location: Location?) {
         viewModelScope.launch(requestDispatcher) {
@@ -62,8 +72,7 @@ class MainViewModel @Inject constructor(
     }
 
     /**
-     * Function to handle when request fails
-     *
+     * On error get location data.
      */
     private fun onErrorGetLocationData() {
         viewModelScope.launch(requestDispatcher) {
@@ -71,6 +80,12 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Request list weather.
+     *
+     * @param latitude Latitude
+     * @param longitude Longitude
+     */
     fun requestListWeather(latitude: Double?, longitude: Double?) {
         viewModelScope.launch(requestDispatcher) {
             _loading.value = true
@@ -85,9 +100,9 @@ class MainViewModel @Inject constructor(
     }
 
     /**
-     * Function to handle when request succeeds
+     * On success get weather data.
      *
-     * @param weather List of weather data
+     * @param weather Weather list
      */
     private fun onSuccessGetWeatherData(weather: Response<List<Weather>>) {
         viewModelScope.launch(requestDispatcher) {
@@ -96,8 +111,7 @@ class MainViewModel @Inject constructor(
     }
 
     /**
-     * Function to handle when request fails
-     *
+     * On error get weather data.
      */
     private fun onErrorGetWeatherData() {
         viewModelScope.launch(requestDispatcher) {
